@@ -1,4 +1,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.reactnativenotification">
 
+  <application>
+    <receiver
+      android:name=".AlarmReceiver"
+      android:enabled="true"
+      android:exported="false">
+    </receiver>
+    <receiver
+      android:name=".SnoozeReceiver"
+      android:enabled="true"
+      android:exported="false">
+    </receiver>
+  </application>
+
 </manifest>

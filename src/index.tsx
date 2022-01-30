@@ -1,4 +1,4 @@
-import { NativeModules, Platform } from 'react-native';
+import { NativeModules, Platform, DeviceEventEmitter } from 'react-native';
 
 const LINKING_ERROR =
   `The package 'react-native-notification' doesn't seem to be linked. Make sure: \n\n` +
@@ -19,4 +19,16 @@ const Notification = NativeModules.Notification
 
 export function multiply(a: number, b: number): Promise<number> {
   return Notification.multiply(a, b);
+}
+
+export function showNotification(
+  text: string,
+  title: string,
+  triggerTime: number
+): any {
+  return Notification.showNotification(text, title, triggerTime);
+}
+
+export function registerTestEvent(callback: any) {
+  DeviceEventEmitter.addListener('onTestingEvents', callback);
 }

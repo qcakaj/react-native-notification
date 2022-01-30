@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="notification_ready">Notification arrived!</string>
+  <string name="notification_channel_id">notification_channel_id</string>
+  <string name="notification_title">notification_title</string>
+  <string name="channel_description">channel descr</string>
+  <string name="notification_channel_name">channel name</string>
+</resources>
