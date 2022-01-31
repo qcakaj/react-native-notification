@@ -11,11 +11,11 @@ npm install react-native-notification
 ## Usage
 
 ```js
-import { multiply } from "react-native-notification";
+import { showNotification } from "react-native-notification";
 
 // ...
 
-const result = await multiply(3, 7);
+showNotification(title,body,triggerTime);
 ```
 
 ## Contributing
