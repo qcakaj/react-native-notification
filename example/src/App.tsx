@@ -5,6 +5,7 @@ import {
   multiply,
   showNotification,
   registerTestEvent,
+  showToast,
 } from 'react-native-notification';
 export default function App() {
   const [result, setResult] = React.useState<number | undefined>();
@@ -15,10 +16,10 @@ export default function App() {
   const [counter, setCounter] = React.useState(0);
   const [startCountdown, setStartCountdown] = React.useState(false);
   React.useEffect(() => {
-    registerTestEvent(({testing_events}: any) => {
+    registerTestEvent(({ testing_events }: any) => {
       console.log('notific clicked', testing_events);
     });
-  },[]);
+  }, []);
   React.useEffect(() => {
     if (startCountdown) {
       const timer =
@@ -78,7 +79,12 @@ export default function App() {
             setStartCountdown(true);
             console.log('trigger time', triggerTime);
             console.log('numberTriggerTime', Number(triggerTime));
-            showNotification(title, text, Number(triggerTime));
+            let notification = {
+              title: title,
+              text: text,
+              triggerTime: Number(triggerTime),
+            };
+            showNotification(notification);
           }}
           title="Show"
           color="#841584"

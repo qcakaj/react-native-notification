@@ -13,6 +13,8 @@ import androidx.core.content.ContextCompat
 import com.facebook.react.bridge.*
 import com.facebook.react.modules.core.DeviceEventManagerModule
 import com.reactnativenotification.sendNotification
+import com.facebook.react.bridge.ReadableMap
+import android.widget.Toast
 
 class NotificationModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext),ActivityEventListener {
   private val REQUEST_CODE = 0
@@ -49,9 +51,12 @@ class NotificationModule(reactContext: ReactApplicationContext) : ReactContextBa
       notificationManager.createNotificationChannel(notificationChannel)
 
     } }
-    // TODO: Step 1.6 END create a channel
+
   @ReactMethod
-  fun showNotification(title:String,text:String, triggerTime:Int){
+  fun showNotification(notification:ReadableMap){
+    val triggerTime = notification.getDouble("triggerTime").toLong()
+    val text = notification.getString("text")
+    val title = notification.getString("title")
       // Create map for params
       val payload = Arguments.createMap()
       // Put data to map
@@ -63,7 +68,7 @@ class NotificationModule(reactContext: ReactApplicationContext) : ReactContextBa
    createChannel(
      reactApplicationContext.getString(R.string.notification_channel_id),
      reactApplicationContext.getString(R.string.notification_channel_name))
-    val triggTime = SystemClock.elapsedRealtime() + triggerTime.toLong()
+    val triggTime = SystemClock.elapsedRealtime() + triggerTime
     val notificationManager =
       ContextCompat.getSystemService(
         reactApplicationContext,

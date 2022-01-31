@@ -21,12 +21,8 @@ export function multiply(a: number, b: number): Promise<number> {
   return Notification.multiply(a, b);
 }
 
-export function showNotification(
-  text: string,
-  title: string,
-  triggerTime: number
-): any {
-  return Notification.showNotification(text, title, triggerTime);
+export function showNotification(notification: Object): any {
+  return Notification.showNotification(notification);
 }
 
 export function registerTestEvent(callback: any) {
