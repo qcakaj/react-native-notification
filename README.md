@@ -14,8 +14,12 @@ npm install react-native-notification
 import { showNotification } from "react-native-notification";
 
 // ...
-
-showNotification(title,body,triggerTime);
+       let notification = {
+              title: title,
+              text: text,
+              triggerTime: 5000,
+            };
+showNotification(notification);
 ```
 
 ## Contributing
