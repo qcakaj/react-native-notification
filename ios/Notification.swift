@@ -8,7 +8,7 @@ class Notification: NSObject {
         resolve(a*b)
     }
 
-    @objc(showNotification:notification:)
+    @objc(showNotification:)
     func showNotification(notification: NSDictionary) -> Void {
        guard let notificationInfo = notification as? [String: Any]
          else {
@@ -20,12 +20,12 @@ class Notification: NSObject {
                     print("All set!")
                     if #available(iOS 10.0, *) {
                         let content = UNMutableNotificationContent()
-                        content.title = notificationInfo["title"]
-                        content.subtitle = notificationInfo["text"]
+                        content.title = notificationInfo["title"] as! String
+                        content.subtitle = notificationInfo["text"] as! String
                         content.sound = UNNotificationSound.default
 
                         // show this notification five seconds from now
-                        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval((notificationInfo["triggerTime"]/1000)), repeats: false)
+                        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval((notificationInfo["triggerTime"] as! Int/1000)), repeats: false)
 
                         // choose a random identifier
                         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
